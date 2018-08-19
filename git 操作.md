@@ -29,7 +29,8 @@
 ```
 7. 合并分支到master
 在非master分支上开发完成后执行 ： 
-``` git checkout master
-    git merge origin/新创建的分支名称（develop）
-    git push
+``` 
+git checkout master
+git merge origin/develop
+git push
 ```
