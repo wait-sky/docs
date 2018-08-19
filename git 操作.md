@@ -21,9 +21,15 @@
 4. 添加本地文件
 ``` git add .
 ```
-3. 提交到本地
+5. 提交到本地
 ``` git commit -m "提交说明"
 ```
-3. 推送到远程服务器
+6. 推送到远程服务器
 ``` git push
+```
+7. 合并分支到master
+在非master分支上开发完成后执行 ： 
+``` git checkout master
+    git merge origin/新创建的分支名称（develop）
+    git push
 ```
