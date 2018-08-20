@@ -30,6 +30,7 @@
 7. 合并分支到master
 在非master分支上开发完成后执行 ： 
 ``` 
+git pull
 git checkout master
 git merge origin/develop
 git push
