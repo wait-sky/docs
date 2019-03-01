@@ -1,4 +1,4 @@
-# webpack4
+# [ webpack4 ](https://webpack.docschina.org/concepts/)
 
 ## webpack 安装
 
@@ -8,7 +8,9 @@
 	-- 这里通过yarn安装处理
 
 + 初始化仓库配置
+
 	```yarn init -y```
+
 	```yarn add webpack webpack-cli -D```
 
 ## webpack可以进行0配置
@@ -20,18 +22,18 @@
 - 默认配置文件名字webpack.config.js
 - 如果不是，运行的时候npx webpack --config 名字 (--config 指定别名的意思，配置文件中也是一样的)
 
-	```javascript
-	// webpack是node写出来的，需要用node语法
-	const path = require('path')
-	module.exports = {
-	  // mode production(压缩，线上，生产环境)，development(非压缩，本地，开发环境过)
-	  mode: 'development',
-	  entry: './src/index.js',
-	  output: {
-		filename: 'build.js',
-		path: path.resolve(__dirname, 'build')
-	  }
-	}
+	> ```javascript
+		// webpack是node写出来的，需要用node语法
+		const path = require('path')
+		module.exports = {
+		  // mode production(压缩，线上，生产环境)，development(非压缩，本地，开发环境过)
+		  mode: 'development',
+		  entry: './src/index.js',
+		  output: {
+			filename: 'build.js',
+			path: path.resolve(__dirname, 'build')
+		  }
+		}
 	```
 - 通过服务地洞并且运行打包之后的代码 webpack-dev-server 插件
 	```
@@ -56,7 +58,7 @@
 
 	- plugin 中的配置, putput 中的配置 filename: 'build.[hash:8].js'
 	```js
-	new HtmlWebpackPlugin({
+		new HtmlWebpackPlugin({
 		  template: './src/index.html',
 		  filename: 'index.html',
 		  minify: {
@@ -74,12 +76,12 @@
 	```
 
 	- 解析css模块
-		- 首先配置模块，安装相应的插件，从右向左，自下而上
-		 - css -> [style-loader & css-loader] 所有样式文件的基础，必须有的
-		 - less -> [less-loader & less]
-		 - sass -> [sass-loader & node-sass]
-		 - stylus -> [stylus-loader & stylus]
-		 - yarn add [上面的插件] -D
+			 - 首先配置模块，安装相应的插件，从右向左，自下而上
+			 - css -> [style-loader & css-loader] 所有样式文件的基础，必须有的
+			 - less -> [less-loader & less]
+			 - sass -> [sass-loader & node-sass]
+			 - stylus -> [stylus-loader & stylus]
+			 - yarn add [上面的插件] -D
 
 		- 然后配置文件进行配置, 例如：
 		```js
@@ -102,85 +104,85 @@
 
   	配置文件配置如下：
 		```js
-			// webpack是node写出来的，需要用node语法
-			const path = require('path')
-			const HtmlWebpackPlugin = require('html-webpack-plugin')
-			const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 将css文件解析抽离出来的插件
-			module.exports = {
-			  // mode production(压缩，线上，生产环境)，development(非压缩，本地，开发环境过)
-			  mode: 'development',
-			  entry: './src/index.js',
-			  output: {
-				filename: 'build.[hash:8].js',
-				path: path.resolve(__dirname, 'build')
-			  },
-			  module: {
-				rules: [
-				  {
-					test: /\.css$/, use: [
-					  MiniCssExtractPlugin.loader, // 将css文件解析抽离成一个文件
-					  'css-loader'
-					]
-				  }
+		// webpack是node写出来的，需要用node语法
+		const path = require('path')
+		const HtmlWebpackPlugin = require('html-webpack-plugin')
+		const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 将css文件解析抽离出来的插件
+		module.exports = {
+		  // mode production(压缩，线上，生产环境)，development(非压缩，本地，开发环境过)
+		  mode: 'development',
+		  entry: './src/index.js',
+		  output: {
+			filename: 'build.[hash:8].js',
+			path: path.resolve(__dirname, 'build')
+		  },
+		  module: {
+			rules: [
+			  {
+				test: /\.css$/, use: [
+				  MiniCssExtractPlugin.loader, // 将css文件解析抽离成一个文件
+				  'css-loader'
 				]
-			  },
-			  plugins: [
-				new HtmlWebpackPlugin({
-				  template: './src/index.html',
-				  filename: 'index.html'
-				}),
-				new MiniCssExtractPlugin({
-				  filename: '目录名称/main.css' // 起用别名
-				})
-			  ]
-			}
-			```
+			  }
+			]
+		  },
+		  plugins: [
+			new HtmlWebpackPlugin({
+			  template: './src/index.html',
+			  filename: 'index.html'
+			}),
+			new MiniCssExtractPlugin({
+			  filename: '目录名称/main.css' // 起用别名
+			})
+		  ]
+		}
+		```
 
 3. 在样式属性前面加上浏览器前缀需要插件
 
  - ```yarn add postcss-loader autoprefixer -D```
-
-	配置文件如下：
-	因为样式解析是通过复杂样式 -- css -- style，所以，放在样式loader的最下面，最右边，最后边，引入即可，
-	同时，创建前缀配置文件 postcss.config.js, 其配置内容如下：
+ 
+		因为样式解析是通过复杂样式 -- css -- style，所以，放在样式loader的最下面，最右边，最后边，引入即可，
+		同时，创建前缀配置文件 postcss.config.js, 其配置内容如下：
 	```js
-	module.exports = {
-	  plugins: [require('autoprefixer')]
-	}
+		module.exports = {
+		  plugins: [require('autoprefixer')]
+		}
 	```
 4. html代码还是开发结构，这里需要将其转换成为生产环境的压缩结构
 	插件地址 [压缩插件地址](https://www.npmjs.com/package/mini-css-extract-plugin)
 
  - ```yarn add optimize-css-assets-webpack-plugin -D```
 
-	但是，css压缩了，js还没有，左移还要安装js压缩插件
+	- [ ]但是，css压缩了，js还没有，左移还要安装js压缩插件
 	```
-	yarn add uglifyjs-webpack-plugin -D
+		yarn add uglifyjs-webpack-plugin -D
 	```
-	所以配置文件回事这样的：
+		所以配置文件回事这样的：
 	```js
-	const OptimizeCssAsset = require('optimize-css-assets-webpack-plugin')
-	const UglifyJs = require('uglifyjs-webpack-plugin')
-	module.exports = {
-	  optimization: {
-		minimizer: [
-		  new OptimizeCssAsset({}),
-		  new UglifyJs({
-			cache: true, // 缓存
-			parallel: true, // 并行处理
-			sourceMap: true //调试
-		  })
-		]
-	  },
-	  mode: 'production', // 这里注意要改成生产环境，否则是不生效的
-	  entry: './src/index.js',
-	  output: {
-		filename: 'build.[hash:8].js',
-		path: path.resolve(__dirname, 'build')
-	  }
-	}
+		const OptimizeCssAsset = require('optimize-css-assets-webpack-plugin')
+		const UglifyJs = require('uglifyjs-webpack-plugin')
+		module.exports = {
+		  optimization: {
+			minimizer: [
+			  new OptimizeCssAsset({}),
+			  new UglifyJs({
+				cache: true, // 缓存
+				parallel: true, // 并行处理
+				sourceMap: true //调试
+			  })
+			]
+		  },
+		  mode: 'production', // 这里注意要改成生产环境，否则是不生效的
+		  entry: './src/index.js',
+		  output: {
+			filename: 'build.[hash:8].js',
+			path: path.resolve(__dirname, 'build')
+		  }
+		}
 	```
-	如果压缩打包的时候产生了错误，看看是不是有es6的语法，有待配置
+
+	- [ ]如果压缩打包的时候产生了错误，看看是不是有es6的语法，有待配置
 
 #### 插件JS
 
@@ -188,51 +190,51 @@
 
 	- ```yarn add babel-loader @babel/core @babel/preset-env -D```
 
-	然后浏览器配置：
+	- [ ]然后浏览器配置：
 	```js
-	{
-        test: /\.js$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'] // 映射
-            },
-			plugins:[......] // 其他的es6插件
-          }
-        ]
-      }
+		{
+			test: /\.js$/,
+			use: [
+			  {
+				loader: 'babel-loader',
+				options: {
+				  presets: ['@babel/preset-env'] // 映射
+				},
+				plugins:[......] // 其他的es6插件
+			  }
+			]
+		  }
 	```
 2. 全局引用js插件
 
 	- ```yarn add expose-loader -D```
 
-	在js代码文件中这样引用并使用
+	  在js代码文件中这样引用并使用
 	```
-	import $ from 'expose-loader?$!jquery' // 将jquery赋值给变量$,然后解析
-	console.log(window.$)
+		import $ from 'expose-loader?$!jquery' // 将jquery赋值给变量$,然后解析
+		console.log(window.$)
 	```
-	另一种写法：
+	 另一种写法：
 	```js
-	import $ from 'jquery'
-	console.log(window.$)
+		import $ from 'jquery'
+		console.log(window.$)
 	```
-	同时配置webpack.config.js
+	 同时配置webpack.config.js
 	```js
-	{
-		test: require.resolve('jquery'),
-        use: 'expose-loader?$'
-    }
+		{
+			test: require.resolve('jquery'),
+			use: 'expose-loader?$'
+		}
 	```
-	第三种方法：
+	 第三种方法：
 
 	``` const webpack = require('webpack') ```
 
-	配置如下：
+	 配置如下：
 	```js
-	new webpack.ProvidePlugin({
-        $: 'jquery'
-    })
+		new webpack.ProvidePlugin({
+			$: 'jquery'
+		})
 	```
 
 #### 图片处理
@@ -241,38 +243,38 @@
 
 	- ```yarn add file-loader -D```
 
-	配置文件的处理
+	 配置文件的处理
 	```js
-	{
-		test: /\.(png|jpg|gif|jpeg)$/,
-		use: 'file-loader',
-		publicPath: 'cdn-path'
-	}
+		{
+			test: /\.(png|jpg|gif|jpeg)$/,
+			use: 'file-loader',
+			publicPath: 'cdn-path'
+		}
 	```
-	js代码处理如下举例：
+	 js代码处理如下举例：
 	```js
-	import kong from './kong.jpg';
-	console.log(kong);
-	let img = new Image();
-	img.src = kong;
-	document.body.appendChild(img);
+		import kong from './kong.jpg';
+		console.log(kong);
+		let img = new Image();
+		img.src = kong;
+		document.body.appendChild(img);
 	```
 
-	如果要在页面中引用图片并且打包，就要安装插件
+	 如果要在页面中引用图片并且打包，就要安装插件
 
 	- ```yarn add html-withimg-plugin -D```
 
-	配置文件：
+	 配置文件：
 	```js
 	  {
         test: /\.html$/,
         use: 'html-withimg-loader'
       }
 	```
-	如果图片过大，或者不用http请求，转成base64位的，需要安装插件
+	 如果图片过大，或者不用http请求，转成base64位的，需要安装插件
 	- ```yarn add url-loader -D```
 
-	配置文件处理：
+	 配置文件处理：
 	```js
 	{
 		test: /\.(png|jpg|gif|jpeg)$/,
@@ -326,12 +328,12 @@
 + 配置文件配置即可，不需要安装插件
 	- 首先是js文件
 	```js
-	class A {
-		  constructor(){
-			console.lo(a)
-		  }
-	}
-	let a = new A();
+		class A {
+			  constructor(){
+				console.lo(a)
+			  }
+		}
+		let a = new A();
 	```
 	- 然后是配置文件
 	```js
@@ -381,7 +383,7 @@
 
 - 直接上代码
 
-- ```js
+ > ```js
 	const path = require('path')
 	const HtmlWebpackPlugin = require('html-webpack-plugin')
 	module.exports = {
@@ -401,38 +403,40 @@
 	}
 ```
 
+
 #### webpack 插件
-1. 清除原有的，打包成为新的，也就是覆盖，清除冗余代码
+
+- [x] 清除原有的，打包成为新的，也就是覆盖，清除冗余代码
 
 	 - ` yarn add clean-webpack-plugin -D `
 
-	配置如下：
+		配置如下：
 	```js
-	const CleanWebpackPlugin = require('clean-webpack-plugin')
-	plugins: [
-		new CleanWebpackPlugin(['build']) // 指定要覆盖的目录，数组
-	  ]
+		const CleanWebpackPlugin = require('clean-webpack-plugin')
+		plugins: [
+			new CleanWebpackPlugin(['build']) // 指定要覆盖的目录，数组
+	    ]
 	```
-2. 拷贝插件，将原有的文件拷贝到指定的目录
+- [x] 拷贝插件，将原有的文件拷贝到指定的目录
 
 	- `yarn add copy-webpack-plugin -D`
 
-	配置如下：
+		配置如下：
 	```js
-	const CopyWebpackPlugin = require('copy-webpack-plugin')
-	new CopyWebpackPlugin([
-		{from: 'doc', to: './'},
-		{...}
-	])
+		const CopyWebpackPlugin = require('copy-webpack-plugin')
+		new CopyWebpackPlugin([
+			{from: 'doc', to: './'},
+			{...}
+		])
 	```
-3. 版权声明，说明这段代码是谁写的
+- [x] 版权声明，说明这段代码是谁写的
 
 	- `webpack 自带的插件 bannerPlugin`
 
-	配置如下：
+		配置如下：
 	```js
-	const webpack = require('webpack')
-	new webpack.BannerPlugin('ayil by 2019') // string
+		const webpack = require('webpack')
+		new webpack.BannerPlugin('ayil by 2019') // string
 	```
 
 #### webpack跨域处理
@@ -503,22 +507,22 @@ devServer: {
 
 	- `yarn add webpack-merge -D`
 
-	通过这个配置何以将原来的拆分文件进行合并处理
-	拆分的文件：
-		- webpack.conf.dev.js
-		- webpack.conf.prod.js
-		- webpack.conf.base.js
+		通过这个配置何以将原来的拆分文件进行合并处理
+		拆分的文件：
+		 	- webpack.conf.dev.js
+		 	- webpack.conf.prod.js
+		 	- webpack.conf.base.js
 
-	如果是生产环境就这样配置：
+	    如果是生产环境就这样配置：
 	```javascript
-	const base = require('./webpack.conf.base.js')
-	const merge = require('webpack-merge')
-	module.exports = merge(base, {
-	    mode: 'production'
-	})
+		const base = require('./webpack.conf.base.js')
+		const merge = require('webpack-merge')
+		module.exports = merge(base, {
+			mode: 'production'
+		})
 	```
 
-   > 在打包时注意： "build": "webpack -- --config ./build/webpack.conf.prod.js"
+ >  在打包时注意： "build": "webpack -- --config ./build/webpack.conf.prod.js"
 
 #### webpack打包时的优化
 1. noParse
