@@ -15,11 +15,11 @@
 ```
 
 ```javascript
- git config --global user.email "这里换上你的邮箱"
+  git config --global user.email "这里换上你的邮箱"
 ```
 
 ```javascript
- ssh-keygen -t rsa -C "这里换上你的邮箱"
+  ssh-keygen -t rsa -C "这里换上你的邮箱"
 ```
 
 #### 命令行
