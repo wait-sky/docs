@@ -13,9 +13,13 @@
 - ```javascript
   git config --global  user.name "这里换上你的用户名"
 ```
+
+
 - ```javascript
  git config --global user.email "这里换上你的邮箱"
 ```
+
+
 - ```javascript
  ssh-keygen -t rsa -C "这里换上你的邮箱"
 ```
