@@ -10,21 +10,21 @@
 
 #### 密钥配置
 
-- ```javascript
+```javascript
   git config --global  user.name "这里换上你的用户名"
 ```
 
-
-- ```javascript
+```javascript
  git config --global user.email "这里换上你的邮箱"
 ```
 
-
-- ```javascript
+```javascript
  ssh-keygen -t rsa -C "这里换上你的邮箱"
 ```
 
-#### 命令行 git [ [相关说明](https://www.cnblogs.com/tocy/p/git-command-line-manual.html) ]
+#### 命令行
+
+[ [相关说明](https://www.cnblogs.com/tocy/p/git-command-line-manual.html) ]
 
 >  - 初始化本地git环境
 ```Javascript
