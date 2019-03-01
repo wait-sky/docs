@@ -11,48 +11,48 @@
 #### 密钥配置
 
 - ```javascript
-  1. git config --global  user.name "这里换上你的用户名" 
+  git config --global  user.name "这里换上你的用户名" 
 ```
 
 - ```javascript
- 2. git config --global user.email "这里换上你的邮箱"
+ git config --global user.email "这里换上你的邮箱"
  ```
 
 - ```javascript
- 3. ssh-keygen -t rsa -C "这里换上你的邮箱"
+ ssh-keygen -t rsa -C "这里换上你的邮箱"
 ```
 
 #### 命令行 git 【 [相关说明](https://www.cnblogs.com/tocy/p/git-command-line-manual.html) 】
 
->  - [x]. 初始化本地git环境
+>  - 初始化本地git环境
 ```Javascript
  	git init
 ```
->  - [x]. 拉取代码
+>  - 拉取代码
 ```Javascript
  	git clone 仓库地址
 ```
->  - [x]. 切换分支
+>  - 切换分支
 ```Javascript
 	git checkout 分支名称
 ```
->  - [x]. 查看状态
+>  - 查看状态
 ``` Javascript
 	git status
 ```
->  - [x]. 添加本地文件
+>  - 添加本地文件
 ``` Javascript
 	git add .
 ```
->  - [x]. 提交到本地
+>  - 提交到本地
 ``` Javascript
 	git commit -m "提交说明"
 ```
->  - [x]. 推送到远程服务器
+>  - 推送到远程服务器
 ``` Javascript
 	git push
 ```
->  - [x]. 合并分支到master,在非master分支上开发完成后执行 ：
+>  - 合并分支到master,在非master分支上开发完成后执行 ：
 ```Javascript
 	git pull(切换到其他分支首先要pull)
 	git checkout master
