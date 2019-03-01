@@ -22,9 +22,7 @@
   ssh-keygen -t rsa -C "这里换上你的邮箱"
 ```
 
-#### 命令行
-
-[ [相关说明](https://www.cnblogs.com/tocy/p/git-command-line-manual.html) ]
+#### 命令行  [ [相关说明](https://www.cnblogs.com/tocy/p/git-command-line-manual.html) ]
 
 >  - 初始化本地git环境
 ```Javascript
